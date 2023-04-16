@@ -1,0 +1,296 @@
+* {
+  box-sizing: border-box;
+  margin: 0px;
+  padding: 0px;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  background: url(/2955.jpg) no-repeat center/cover;
+  min-height: 100%;
+  font-family: "Arial", sans-serif;
+}
+
+#navbar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#logo {
+  margin: 5px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+#logo h2{
+    color: #a9eff3;
+    font-size: 32px;
+    font-weight: 500;
+    text-align: center;
+    margin: 0px;
+    font-family: 'Roboto', sans-serif;
+}
+#logo img {
+  height: 88px;
+  margin: 2px 2px;
+  text-align: center;
+}
+
+#navbar {
+  position: relative;
+}
+
+
+#navbar::before {
+  content: "";
+  background-color: rgb(17, 2, 23);
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  height: 100%;
+  width: 100%;
+  z-index: -1;
+  opacity: 0.6;
+}
+
+
+
+.wrap {
+  position: relative;
+  height: 68%;
+  /* min-height: 500px; */
+  /* padding-bottom: 20px; */
+}
+
+.game {
+    margin-top: 60px;
+  transform-style: preserve-3d;
+  perspective: 500px;
+  /* min-height: 100%; */
+  height: 100%;
+}
+
+@-webkit-keyframes matchAnim {
+  0% {
+    background: #bcffcc;
+  }
+  100% {
+    background: white;
+  }
+}
+
+@keyframes matchAnim {
+  0% {
+    background: #bcffcc;
+  }
+  100% {
+    background: white;
+  }
+}
+.card {
+  float: left;
+  width: 16.66666%;
+  height: 25%;
+  padding: 5px;
+  text-align: center;
+  display: block;
+  perspective: 500px;
+  position: relative;
+  cursor: pointer;
+  z-index: 50;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+@media (max-width: 800px) {
+  .card {
+    width: 25%;
+    height: 16.666%;
+  }
+}
+.card .inside {
+  width: 100%;
+  height: 100%;
+  display: block;
+  transform-style: preserve-3d;
+  transition: 0.4s ease-in-out;
+  background: rgb(29, 7, 63);
+ 
+}
+.card .inside.picked,
+.card .inside.matched {
+  transform: rotateY(180deg);
+}
+.card .inside.matched {
+  -webkit-animation: 1s matchAnim ease-in-out;
+  animation: 1s matchAnim ease-in-out;
+  -webkit-animation-delay: 0.4s;
+  animation-delay: 0.4s;
+}
+.card .front,
+.card .back {
+  border: 2px solid rgb(223, 223, 223);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding: 5px;
+}
+.card .front img,
+.card .back img {
+  max-width: 100%;
+  display: block;
+  margin: 0 auto;
+  
+  max-height: 100%;
+ 
+}
+.card .front {
+  transform: rotateY(-180deg);
+}
+@media (max-width: 800px) {
+  .card .front {
+    padding: 5px;
+  }
+}
+.card .back {
+  transform: rotateX(0);
+}
+@media (max-width: 800px) {
+  .card .back {
+    padding: 10px;
+  }
+}
+
+.modal-overlay {
+  display: none;
+  background: rgba(0, 0, 0, 0.8);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.modal {
+  display: none;
+  position: relative;
+  width: 500px;
+  height: 400px;
+  max-height: 90%;
+  max-width: 90%;
+  min-height: 380px;
+  margin: 0 auto;
+  background-color: rgba(255, 255, 255, 0.13);
+  backdrop-filter: blur(5px);
+  top: 50%;
+  transform: translateY(-50%);
+  padding: 30px 10px;
+}
+.modal .winner {
+  font-size: 80px;
+  text-align: center;
+  font-family: "Anton", sans-serif;
+  color: #ffffff;
+  text-shadow: 0px 3px 0 black;
+}
+@media (max-width: 480px) {
+  .modal .winner {
+    font-size: 60px;
+  }
+}
+.modal .restart {
+  font-family: "Anton", sans-serif;
+  margin: 30px auto;
+  padding: 20px 30px;
+  display: block;
+  font-size: 30px;
+  border: none;
+  background: #870202;
+  background: linear-gradient(#4d4d4d, #222);
+  border: 1px solid #222;
+  border-radius: 5px;
+  color: white;
+  text-shadow: 0px 1px 0 black;
+  cursor: pointer;
+}
+.modal .restart:hover {
+  background: linear-gradient(#222, black);
+}
+.modal .message {
+  text-align: center;
+  color: whitesmoke;
+}
+.modal .message a {
+  text-decoration: none;
+  color: #f7f8f9;
+  font-weight: bold;
+}
+.modal .message a:hover {
+  color: #56c0eb;
+  border-bottom: 1px dotted #56c0eb;
+}
+.modal .share-text {
+  text-align: center;
+  margin: 10px auto;
+  color: whitesmoke;
+}
+.modal .social {
+  margin: 20px auto;
+  text-align: center;
+}
+.modal .social li {
+  display: inline-block;
+  height: 50px;
+  width: 50px;
+  margin-right: 10px;
+}
+.modal .social li:last-child {
+  margin-right: 0;
+}
+.modal .social li a {
+  display: block;
+  line-height: 50px;
+  font-size: 20px;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+}
+.modal .social li a.facebook {
+  background: #3b5998;
+}
+.modal .social li a.facebook:hover {
+  background: #4c70ba;
+}
+.modal .social li a.google {
+  background: #d34836;
+}
+.modal .social li a.google:hover {
+  background: #dc6e60;
+}
+.modal .social li a.twitter {
+  background: #4099ff;
+}
+.modal .social li a.twitter:hover {
+  background: #73b4ff;
+}
+
+footer{
+    background: black;
+    color: white;
+    padding: 5px 20px;
+    /* margin: 80px 20px; */
+    text-align: center;
+}
+
+@media (max-width: 767px) {
+  footer .disclaimer {
+    font-size: 8px;
+  }
+}
